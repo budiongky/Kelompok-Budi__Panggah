@@ -1,0 +1,331 @@
+nomer 1:
+int led=12;
+int led1=11;
+int led2=10;
+
+void setup(){
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+} 
+void loop(){
+digitalWrite(led,HIGH);
+digitalWrite(led1,HIGH);
+digitalWrite(led2,HIGH);
+delay(2000);
+
+digitalWrite(led,LOW);
+digitalWrite(led1,LOW);
+digitalWrite(led2,LOW);
+delay(1000);
+} 
+
+int led=12;
+int led1=11;
+int led2=10;
+
+void setup(){
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+} 
+void loop(){
+digitalWrite(led,HIGH);
+delay(500);
+digitalWrite(led,LOW);
+delay(500);
+
+digitalWrite(led1,HIGH);
+delay(500);
+digitalWrite(led1,LOW);
+delay(500);
+
+digitalWrite(led2,HIGH);
+delay(500);
+digitalWrite(led2,LOW);
+delay(500);
+}
+
+
+nomer 2.
+int led=9;
+int led1=11;
+int led2=10; 
+int i;
+
+void setup(){
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+} 
+void loop(){ 
+  for(i=0; i<=255; i+=5){
+analogWrite(led,i);
+analogWrite(led1,i);
+analogWrite(led2,i);
+delay(100);
+ }
+delay(2000);
+  for (i=255; i>=0; i-=5){
+analogWrite(led,i);
+analogWrite(led1,i);
+analogWrite(led2,i); 
+delay(100);
+ }
+delay(1000);
+} 
+
+
+int led=9;
+int led1=11;
+int led2=10; 
+int i;
+
+void setup(){
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+} 
+void loop(){ 
+  for(i=0; i<=255; i+=5){
+analogWrite(led,i);
+delay(100);
+ }
+  for (i=255; i>=0; i-=5){
+analogWrite(led,i);
+delay(100);
+ }
+delay(500);
+
+for(i=0; i<=255; i+=5){
+analogWrite(led1,i);
+delay(100);
+ }
+  for (i=255; i>=0; i-=5){
+analogWrite(led1,i);
+delay(100);
+ }
+delay(500);
+
+for(i=0; i<=255; i+=5){
+analogWrite(led2,i);
+delay(100);
+ }
+  for (i=255; i>=0; i-=5){
+analogWrite(led2,i);
+delay(100);
+ }
+delay(500);
+} 
+
+
+3. int led=9;
+int led1=10;
+int led2=11; 
+int pot=A0; 
+int data=0;
+
+void setup(){
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+pinMode(pot,INPUT);
+} 
+
+void loop(){
+data=analogRead(pot);
+data=data/4;
+analogWrite(led,data);
+analogWrite(led1,data);
+analogWrite(led2,data);
+} 
+
+
+
+int led=9;
+int led1=11;
+int led2=10; 
+int pot=A0; 
+int i;
+int data=0;
+
+void setup(){
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+pinMode(pot,INPUT);
+} 
+
+void loop(){
+data=analogRead(pot);
+for(i=0; i<=255; i+=5){
+analogWrite(led,i);
+delay(data);
+ }
+  for (i=255; i>=0; i-=5){
+analogWrite(led,i);
+delay(data);
+ }
+
+
+for(i=0; i<=255; i+=5){
+analogWrite(led1,i);
+delay(data);
+ }
+  for (i=255; i>=0; i-=5){
+analogWrite(led1,i);
+delay(data);
+ }
+
+
+for(i=0; i<=255; i+=5){
+analogWrite(led2,i);
+delay(data);
+ }
+  for (i=255; i>=0; i-=5){
+analogWrite(led2,i);
+delay(data);
+ }
+
+} 
+
+
+
+4. int led=9;
+int led1=10;
+int led2=11;
+int tombol=2;
+
+void setup(){
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+pinMode(tombol,INPUT);
+}
+
+void loop(){
+ if(digitalRead(tombol)==LOW){
+digitalWrite(led,HIGH);
+digitalWrite(led1,HIGH);
+digitalWrite(led2,HIGH);
+ }
+else{
+ digitalWrite(led,LOW);
+ digitalWrite(led1,LOW);
+ digitalWrite(led2,LOW);
+ }
+} 
+
+
+
+int led=9;
+int led1=10;
+int led2=11;
+int tombol=2;
+int i;
+
+
+void setup(){
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+pinMode(tombol,INPUT);
+}
+
+void loop(){
+ if(digitalRead(tombol)==LOW){
+   for(i=0; i<=255; i+=5){
+analogWrite(led,i);
+delay(100);
+ }
+  for (i=255; i>=0; i-=5){
+analogWrite(led,i);
+delay(100);
+ }
+delay(500);
+
+for(i=0; i<=255; i+=5){
+analogWrite(led2,i);
+delay(100);
+ }
+  for (i=255; i>=0; i-=5){
+analogWrite(led2,i);
+delay(100);
+ }
+delay(500);
+
+for(i=0; i<=255; i+=5){
+analogWrite(led1,i);
+delay(100);
+ }
+  for (i=255; i>=0; i-=5){
+analogWrite(led1,i);
+delay(100);
+ }
+delay(500);
+} 
+
+ 
+else{
+ digitalWrite(led,LOW);
+ digitalWrite(led1,LOW);
+ digitalWrite(led2,LOW);
+ }
+} 
+
+
+
+
+
+int led=9;
+int led1=11;
+int led2=10;
+int pot=A0;
+int data=0;
+int i;
+int tombol=2;
+
+void setup(){
+pinMode(pot,INPUT);
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+pinMode(tombol,INPUT);
+} 
+void loop(){
+data=analogRead(pot);
+data=data*1000;
+
+if(digitalRead(tombol)==LOW){
+//mera  
+digitalWrite(led,HIGH);
+delay(data);
+digitalWrite(led,LOW);
+
+//kuning
+for(i=0; i<=255; i+=5){
+analogWrite(led1,i);
+delay(30);
+ }
+
+ data=data/4;
+delay(data);
+  for (i=255; i>=0; i-=5){
+analogWrite(led1,i);
+delay(30);
+ }
+
+//iau
+digitalWrite(led2,HIGH);
+data=data*8;
+delay(data);
+digitalWrite(led2,LOW);
+}
+
+
+else{
+ digitalWrite(led,LOW);
+ digitalWrite(led1,LOW);
+ digitalWrite(led2,LOW);
+ }
+} 

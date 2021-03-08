@@ -1,0 +1,88 @@
+int mKa1=10;
+int mKa2=9;
+int mKi1=6;
+int mKi2=5;
+int led2=8; //led kanan
+int led3=7;  // led kiri
+int led1=13;  // led tengah
+int sensor1=A0;
+int sensor2=A1;
+int sensor3=A2;
+int sensor4=A3;
+int sensor5=A4;
+int sensor6=A5;
+
+
+void setup() {
+pinMode (led2,OUTPUT);
+pinMode (led3,OUTPUT);
+pinMode (led1,OUTPUT); 
+pinMode (mKa1,OUTPUT);
+pinMode (mKa2,OUTPUT);
+pinMode (mKi1,OUTPUT);
+pinMode (mKi2,OUTPUT);
+pinMode (sensor1,INPUT);
+pinMode (sensor2,INPUT);
+pinMode (sensor3,INPUT);
+pinMode (sensor4,INPUT);
+pinMode (sensor5,INPUT);
+pinMode (sensor6,INPUT);
+}
+
+void loop() {
+ if (digitalRead(sensor1)==1 && digitalRead(sensor2)==1 && digitalRead(sensor3)==1 && digitalRead(sensor4)==1 && digitalRead(sensor5)==1 && digitalRead(sensor6)==1){
+  maju();
+ }
+ else if(digitalRead(sensor1)==1 && digitalRead(sensor2)==1){
+    belokKanan();
+  }
+ else if(digitalRead(sensor5)==1 && digitalRead(sensor6)==1){
+      belokKiri();
+    }
+ else if(digitalRead(sensor3)==1 && digitalRead(sensor4)==1){
+        maju();
+      }
+ else if(digitalRead(sensor1)==0 && digitalRead(sensor2)==0 && digitalRead(sensor3)==0 && digitalRead(sensor4)==0 && digitalRead(sensor5)==0 && digitalRead(sensor6)==0){
+        berhenti();
+        } 
+ }
+
+
+void maju(){
+  digitalWrite(mKa1, HIGH);
+  digitalWrite(mKa2, LOW);
+  digitalWrite(mKi1, HIGH);
+  digitalWrite(mKi2, LOW);
+  digitalWrite(led2,LOW);
+  digitalWrite(led1,HIGH);
+  digitalWrite(led3,LOW);
+}
+void belokKanan(){
+  digitalWrite(mKa1, HIGH);
+  digitalWrite(mKa2, LOW);
+  digitalWrite(mKi1, LOW);
+  digitalWrite(mKi2, LOW);
+  digitalWrite(led2,HIGH);
+  digitalWrite(led1,LOW);
+  digitalWrite(led3,LOW);
+}
+void belokKiri(){
+  digitalWrite(mKa1, LOW);
+  digitalWrite(mKa2, LOW);
+  digitalWrite(mKi1, HIGH);
+  digitalWrite(mKi2, LOW);
+  digitalWrite(led2,LOW);
+  digitalWrite(led1,LOW);
+  digitalWrite(led3,HIGH);
+
+}
+void berhenti(){
+  digitalWrite(mKa1, LOW);
+  digitalWrite(mKa2, LOW);
+  digitalWrite(mKi1, LOW);
+  digitalWrite(mKi2, LOW);
+
+}
+
+
+

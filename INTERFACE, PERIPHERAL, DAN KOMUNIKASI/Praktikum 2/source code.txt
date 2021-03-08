@@ -1,0 +1,470 @@
+1. #include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+int tombol=10;
+int tombol1=9;
+int tombol2=8;
+
+void setup() {
+  pinMode(tombol,INPUT);
+  pinMode(tombol1,INPUT);
+  pinMode(tombol2,INPUT);
+  lcd.begin(16, 2);
+  lcd.setCursor(0,0);
+  lcd.print("hello, Budi!!!");
+  delay(500);
+  lcd.clear();
+}
+
+void loop() {
+  if(digitalRead(tombol)==LOW){
+  lcd.setCursor(0,0);
+  lcd.print("tombol 1 ditekan!!!");
+  }
+
+  else if(digitalRead(tombol1)==LOW){
+  lcd.setCursor(0,1);
+  lcd.print("tombol 2 ditekan!!!");
+  }
+  
+  else if(digitalRead(tombol2)==LOW){
+  lcd.clear();
+  }
+
+  else{
+  }
+  
+}
+
+
+2. #include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+int tombol=10;
+int tombol1=9;
+
+void setup(){
+  pinMode(tombol,INPUT);
+  pinMode(tombol1,INPUT);
+  lcd.begin(16, 2);
+  lcd.print("Running Text!!!");
+  
+}
+
+void loop(){
+ if(digitalRead(tombol)==LOW){
+ for (int positionCounter = 0; positionCounter < 15; positionCounter++){
+   lcd.scrollDisplayLeft();
+   delay(150); 
+  }
+ }
+
+ else if(digitalRead(tombol1)==LOW){
+  for (int positionCounter = 0; positionCounter < 15; positionCounter++){
+   lcd.scrollDisplayRight();
+   delay(150); 
+  }
+ }
+ 
+  else{
+  }
+} 
+
+
+3. #include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+int tombol=10;
+
+void setup(){
+pinMode(tombol,INPUT);
+lcd.begin(16, 2);
+Serial.begin(9600);
+lcd.setCursor(0,0);
+lcd.print("Hello, Budi!");
+delay(1000);
+lcd.clear();
+}
+void loop(){
+ if (Serial.available()) {
+  
+   while(Serial.available()>0){
+   char ch=Serial.read();
+ 
+   Serial.write(ch);
+   lcd.write(ch);
+  }
+ }
+ if(digitalRead(tombol)==LOW){
+  for (int positionCounter = 0; positionCounter < 15; positionCounter++){
+   lcd.scrollDisplayLeft();
+   delay(150); 
+  }
+ }
+}
+
+
+SHIFT REGISTER
+1. #include <LiquidCrystal_SR_LCD3.h>  
+const int PIN_LCD_STROBE = 2; 
+const int PIN_LCD_DATA = 3; 
+const int PIN_LCD_CLOCK = 4;
+int tombol=7;
+int tombol1=6;
+int tombol2=5;
+LiquidCrystal_SR_LCD3 lcd(PIN_LCD_DATA,PIN_LCD_CLOCK,PIN_LCD_STROBE);
+
+void setup(){
+pinMode(tombol,INPUT);
+pinMode(tombol1,INPUT);
+pinMode(tombol2,INPUT);
+lcd.begin(16,2);
+lcd.home ();
+lcd.setCursor (0, 0);
+lcd.print("hello, Budi!!!");
+delay(500);
+lcd.clear();
+}
+
+void loop(){
+  if(digitalRead(tombol)==LOW){
+  lcd.setCursor(0,0);
+  lcd.print("tombol 1 ditekan!!!");
+  }
+
+  else if(digitalRead(tombol1)==LOW){
+  lcd.setCursor(0,1);
+  lcd.print("tombol 2 ditekan!!!");
+  }
+  
+  else if(digitalRead(tombol2)==LOW){
+  lcd.clear();
+  }
+
+  else{
+  }
+}
+
+
+
+
+#include <LiquidCrystal_SR_LCD3.h>  
+const int PIN_LCD_STROBE = 2; 
+const int PIN_LCD_DATA = 3; 
+const int PIN_LCD_CLOCK = 4;
+int tombol=7;
+int tombol1=6;
+int tombol2=5;
+LiquidCrystal_SR_LCD3 lcd(PIN_LCD_DATA,PIN_LCD_CLOCK,PIN_LCD_STROBE);
+
+void setup(){
+pinMode(tombol,INPUT);
+pinMode(tombol1,INPUT);
+pinMode(tombol2,INPUT);
+lcd.begin(16,2);
+lcd.home ();
+lcd.setCursor (0, 0);
+lcd.print("hello, Budi!!!");
+delay(500);
+lcd.clear();
+  lcd.print("Running Text!!!");
+}
+
+void loop(){
+ if(digitalRead(tombol)==LOW){
+ for (int positionCounter = 0; positionCounter < 15; positionCounter++){
+   lcd.scrollDisplayLeft();
+   delay(150); 
+  }
+ }
+
+ else if(digitalRead(tombol1)==LOW){
+  for (int positionCounter = 0; positionCounter < 15; positionCounter++){
+   lcd.scrollDisplayRight();
+   delay(150); 
+  }
+ }
+ 
+  else{
+  }
+}
+
+
+
+#include <LiquidCrystal_SR_LCD3.h>  
+const int PIN_LCD_STROBE = 2; 
+const int PIN_LCD_DATA = 3; 
+const int PIN_LCD_CLOCK = 4;
+int tombol=7;
+int tombol1=6;
+LiquidCrystal_SR_LCD3 lcd(PIN_LCD_DATA,PIN_LCD_CLOCK,PIN_LCD_STROBE);
+
+void setup(){
+pinMode(tombol,INPUT);
+pinMode(tombol1,INPUT);
+lcd.begin(16,2);
+Serial.begin(9600);
+lcd.home ();
+lcd.setCursor (0, 0);
+lcd.print("hello, Budi!!!");
+delay(1000);
+lcd.clear();
+}
+
+void loop(){
+if (Serial.available()) {
+   char ch=Serial.read();
+ 
+   Serial.write(ch);
+   lcd.write(ch);
+  
+ }
+ if(digitalRead(tombol)==LOW){
+  for (int positionCounter = 0; positionCounter < 15; positionCounter++){
+   lcd.scrollDisplayLeft();
+   delay(150); 
+  }
+ }
+  else if(digitalRead(tombol1)==LOW){
+  for (int positionCounter = 0; positionCounter < 15; positionCounter++){
+   lcd.scrollDisplayRight();
+   delay(150); 
+  }
+ }
+ else{
+ }
+ 
+}
+
+
+
+
+
+
+#include <LiquidCrystal_SR_LCD3.h>
+const int PIN_LCD_STROBE = 2;
+const int PIN_LCD_DATA = 3;
+const int PIN_LCD_CLOCK = 4;
+int sw_ok=7;
+int sw_up=6;
+int sw_back=5;
+int batas;
+LiquidCrystal_SR_LCD3 lcd(PIN_LCD_DATA, PIN_LCD_CLOCK,PIN_LCD_STROBE);
+
+void setup(){
+lcd.begin(16,2);
+lcd.home ();
+ lcd.setCursor (4, 0);
+lcd.print("D3TK-43-02");
+lcd.setCursor (0,1);
+ lcd.print("Budi     Panggah");
+delay(3000);
+batas=0;
+menu();
+}
+void loop()
+{
+for(int i=0; i<=batas; i++){
+lcd.clear();
+lcd.setCursor(0,0);
+lcd.print("BATAS : ");
+lcd.setCursor(7,0);
+lcd.print(batas);
+lcd.setCursor(0,1);
+lcd.print("Data : ");
+lcd.setCursor(7,1);
+lcd.print(i);
+delay(1000);
+ }
+}
+void menu(){
+//..................
+ set:
+lcd.clear();
+lcd.setCursor(5,0);
+lcd.print("SETTING");
+lcd.setCursor(0,1);
+lcd.print("SET");
+lcd.setCursor(11,1);
+lcd.print("START");
+//..................
+ if(digitalRead(sw_ok)==LOW){ //..................
+ while(digitalRead(sw_ok)==LOW){}
+goto set1;
+ }
+ if(digitalRead(sw_back)==LOW){
+//..................
+ while(digitalRead(sw_back)==LOW){} //..................
+ goto start;
+ } else{ goto set;
+//..................
+ }
+ set1: //..................
+ lcd.clear();
+lcd.setCursor(0,0);
+lcd.print("BATAS :");
+lcd.setCursor(7,0); 
+lcd.print(batas);
+lcd.setCursor(0,1);
+lcd.print("SET");
+lcd.setCursor(7,1);
+lcd.print("UP");
+lcd.setCursor(12,1);
+lcd.print("DOWN");
+if(digitalRead(sw_ok)==LOW){
+while(digitalRead(sw_ok)==LOW){}//..................
+goto set; //..................
+ }
+if(digitalRead(sw_back)==LOW){ //..................
+batas=batas-1;
+if (batas<0){
+batas=0;
+}
+delay(100);
+goto set1;
+ }
+ if(digitalRead(sw_up)==LOW){
+batas=batas+1;
+//..................
+delay(100);
+goto set1;
+ }
+else{
+goto set1;
+//..................
+ }
+start:
+lcd.clear();
+lcd.setCursor(8,0);
+lcd.print("DONE");
+delay(3000);
+} 
+
+
+
+
+
+
+
+
+#include <LiquidCrystal_SR_LCD3.h>
+const int PIN_LCD_STROBE = 2;
+const int PIN_LCD_DATA = 3;
+const int PIN_LCD_CLOCK = 4;
+int led=10;
+int led1=9;
+int led2=8;
+int tombol=7;
+int tombol1=6;
+int tombol2=5;
+LiquidCrystal_SR_LCD3 lcd(PIN_LCD_DATA, PIN_LCD_CLOCK,PIN_LCD_STROBE);
+
+void setup(){
+pinMode(led,OUTPUT);
+pinMode(led1,OUTPUT);
+pinMode(led2,OUTPUT);
+pinMode(tombol,INPUT);
+pinMode(tombol1,INPUT);
+pinMode(tombol2,INPUT);
+
+lcd.begin(16,2);
+lcd.home ();
+ lcd.setCursor (4, 0);
+lcd.print("D3TK-43-02");
+lcd.setCursor (0,1);
+ lcd.print("Budi     Panggah");
+delay(1000);
+lcd.setCursor (0,0);
+ lcd.print(" Menu  Pilihan ");
+lcd.setCursor (0,1);
+ lcd.print(" Menyalakan Led ");
+delay(2000);
+lcd.clear();
+}
+
+void loop(){
+ 
+ lcd.setCursor(4,0);
+ lcd.print("1.BLINK");
+ lcd.setCursor(0,1);
+ lcd.print("2.RUNING");
+ lcd.setCursor(8,1);
+ lcd.print("3.FADING");
+
+ if(digitalRead(tombol)==LOW){
+  lcd.clear();
+  lcd.setCursor(3,0);
+  lcd.print(" Blink LED ");
+  delay(100);
+  lcd.noDisplay();
+  delay(100);
+  lcd.display();
+  
+  blink();
+  lcd.clear();
+ }
+
+ else if(digitalRead(tombol1)==LOW){
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("  Running LED  ");
+  delay(100);
+  for (int positionCounter = 0; positionCounter < 15; positionCounter++){
+   lcd.scrollDisplayRight();
+   delay(150); 
+  }
+
+  running();
+  lcd.clear();
+ }
+
+ else if(digitalRead(tombol2)==LOW){
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("  Fading  LED  ");
+
+  fading();
+  lcd.clear();
+ }
+ 
+}
+
+void blink(){
+ digitalWrite(led,HIGH);
+ digitalWrite(led1,HIGH);
+ digitalWrite(led2,HIGH);
+ delay(250);
+ digitalWrite(led,LOW);
+ digitalWrite(led1,LOW);
+ digitalWrite(led2,LOW);
+ delay(200);
+}
+  
+void running(){
+ digitalWrite(led,HIGH);
+ delay(200);
+ digitalWrite(led,LOW);
+ delay(200);
+ digitalWrite(led1,HIGH);
+ delay(200);
+ digitalWrite(led1,LOW);
+ delay(200);
+ digitalWrite(led2,HIGH);
+ delay(200);
+ digitalWrite(led2,LOW);
+ delay(200);
+}
+
+void fading(){
+ for(int i=0; i<=255; i+=5){
+ analogWrite(led,i);
+ analogWrite(led1,i);
+ analogWrite(led2,i);
+ delay(100);
+ } 
+ 
+ for (int i=255; i>=0; i-=5){
+ analogWrite(led,i);
+ analogWrite(led1,i);
+ analogWrite(led2,i);
+ delay(100);
+ }
+}
+
