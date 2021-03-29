@@ -1,112 +1,36 @@
-int a=10;
-int b=9; int c=8; int d=7;
-int e=6; int f=5; int g=4;
+#include <Keypad.h>
+#include <LiquidCrystal_SR_LCD3.h>
+const int PIN_LCD_STROBE = 2;
+const int PIN_LCD_DATA = 3;
+const int PIN_LCD_CLOCK = 1;
+char keys[4][3] = { {'1','2','3'},
+{'4','5','6'},
+{'7','8','9'},
+{'*','0','#'}
+};
+byte pin_rows[] = {A1, A2, A3, A4}; 
+byte pin_column[] = {13, 12, 11}; 
+Keypad keypad = Keypad(makeKeymap(keys), pin_rows, pin_column, 4, 3);
+LiquidCrystal_SR_LCD3 lcd(PIN_LCD_DATA,PIN_LCD_CLOCK,PIN_LCD_STROBE);
+int cursorColumn = 0;
+
 void setup(){
-for(int i=10; i>=4; i--){
-pinMode(i,OUTPUT);
-}
-} void loop(){
-for(int i=0; i<=9; i++){
-segment(i);
+lcd.begin(16,2);
+lcd.setCursor (0, 0);
+lcd.print("WELCOME BUDI");
 delay(1000);
+lcd.clear();
 }
-}
-void segment(int angka){
-if (angka==0){
-digitalWrite(a,HIGH);
-digitalWrite(b,HIGH);
-digitalWrite(c,HIGH);
-digitalWrite(d,HIGH);
-digitalWrite(e,HIGH);
-digitalWrite(f,HIGH);
-digitalWrite(g,LOW);
-} else if (angka==1){
-digitalWrite(a,LOW);
-digitalWrite(b,HIGH);
-digitalWrite(c,HIGH);
-digitalWrite(d,LOW);
-digitalWrite(e,LOW);
-digitalWrite(f,LOW);
-digitalWrite(g,LOW);
-} else if (angka==2){
-digitalWrite(a,HIGH);
-digitalWrite(b,HIGH);
-digitalWrite(c,LOW);
-digitalWrite(d,HIGH);
-digitalWrite(e,HIGH);
-digitalWrite(f,LOW);
-digitalWrite(g,HIGH);
-}
-else if (angka==3){
-digitalWrite(a,HIGH);
-digitalWrite(b,HIGH);
-digitalWrite(c,HIGH);
-digitalWrite(d,HIGH);
-digitalWrite(e,LOW);
-digitalWrite(f,LOW);
-digitalWrite(g,HIGH);
-}
-else if (angka==4){
-digitalWrite(a,LOW);
-digitalWrite(b,HIGH);
-digitalWrite(c,HIGH);
-digitalWrite(d,LOW);
-digitalWrite(e,LOW);
-digitalWrite(f,HIGH);
-digitalWrite(g,HIGH);
-}
-else if (angka==5){
-digitalWrite(a,HIGH);
-digitalWrite(b,LOW);
-digitalWrite(c,HIGH);
-digitalWrite(d,HIGH);
-digitalWrite(e,LOW);
-digitalWrite(f,HIGH);
-digitalWrite(g,HIGH);
-}
-else if (angka==6){
-digitalWrite(a,HIGH);
-digitalWrite(b,LOW);
-digitalWrite(c,HIGH);
-digitalWrite(d,HIGH);
-digitalWrite(e,HIGH);
-digitalWrite(f,HIGH);
-digitalWrite(g,HIGH);
-}
-else if (angka==7){
-digitalWrite(a,HIGH);
-digitalWrite(b,HIGH);
-digitalWrite(c,HIGH);
-digitalWrite(d,LOW);
-digitalWrite(e,LOW);
-digitalWrite(f,LOW);
-digitalWrite(g,LOW);
-}
-else if (angka==8){
-digitalWrite(a,HIGH);
-digitalWrite(b,HIGH);
-digitalWrite(c,HIGH);
-digitalWrite(d,HIGH);
-digitalWrite(e,HIGH);
-digitalWrite(f,HIGH);
-digitalWrite(g,HIGH);
-}
-else if (angka==9){
-digitalWrite(a,HIGH);
-digitalWrite(b,HIGH);
-digitalWrite(c,HIGH);
-digitalWrite(d,HIGH);
-digitalWrite(e,LOW);
-digitalWrite(f,HIGH);
-digitalWrite(g,HIGH);
-}
-else {
-digitalWrite(a,LOW);
-digitalWrite(b,LOW);
-digitalWrite(c,LOW);
-digitalWrite(d,LOW);
-digitalWrite(e,LOW);
-digitalWrite(f,LOW);
-digitalWrite(g,LOW);
-}
+
+void loop(){
+char key = keypad.getKey();
+if (key){
+ lcd.setCursor(cursorColumn, 0); //merubah cursor ke (cursorColumn,0)
+ lcd.print(key); // mencetak key pada (cursorColumn, 0)
+ cursorColumn++; // merubah cursor ke kolom setelahnya
+ if(cursorColumn == 16) { // membuat kondisi apabila text melebihi pada kolom 16 akan dihapus semua
+ lcd.clear();
+ cursorColumn = 0;
+ }
+ }
 }
